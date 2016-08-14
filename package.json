@@ -1,9 +1,9 @@
 {
-  "name": "generator-nm",
+  "name": "generator-node-modules",
   "version": "3.0.0",
-  "description": "Scaffold out a node module",
+  "description": "A node module generator for yo",
   "license": "MIT",
-  "repository": "bramkok/generator-nm",
+  "repository": "bramkok/generator-node-modules",
   "author": {
     "name": "Bram Kok",
     "url": "bramkok.com"

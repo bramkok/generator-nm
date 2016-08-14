@@ -1,6 +1,6 @@
-# generator-nm [![Build Status](https://travis-ci.org/bramkok/generator-nm.svg?branch=master)](https://travis-ci.org/bramkok/generator-nm)
+# generator-node-modules [![Build Status](https://travis-ci.org/bramkok/generator-node-modules.svg?branch=master)](https://travis-ci.org/bramkok/generator-node-modules)
 
-> Node module generator
+> A node module generator for yo
 
 ![](screenshot.png)
 
@@ -8,7 +8,7 @@
 ## Install
 
 ```
-$ npm install --global yo generator-nm
+$ npm install --global yo generator-node-modules
 ```
 
 
@@ -17,16 +17,16 @@ $ npm install --global yo generator-nm
 With [yo](https://github.com/yeoman/yo):
 
 ```
-$ yo nm
+$ yo node-modules
 ```
 
 There are multiple command-line options available:
 
 ```
-$ yo nm --help
+$ yo node-modules --help
 
   Usage:
-    yo nm [options]
+    yo node-modules [options]
 
   Options:
     --help          # Print the generator's options and usage
