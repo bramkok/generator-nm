@@ -24,6 +24,7 @@ test.serial('generates expected files', async () => {
 
 	assert.file([
 		'.editorconfig',
+		'.eslintrc.json',
 		'.git',
 		'.gitattributes',
 		'.gitignore',

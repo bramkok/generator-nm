@@ -15,8 +15,8 @@ $ npm install --save <%= moduleName %>
 ```js
 const <%= camelModuleName %> = require('<%= moduleName %>');
 
-<%= camelModuleName %>('unicorns');
-//=> 'unicorns & rainbows'
+<%= camelModuleName %>('salt');
+//=> 'salt & vinegar'
 ```
 
 
@@ -57,9 +57,9 @@ $ <%= repoName %> --help
 
   Examples
     $ <%= repoName %>
-    unicorns & rainbows
+    salt & vinegar
     $ <%= repoName %> ponies
-    ponies & rainbows
+    pepper & vinegar
 ```<% } %>
 
 

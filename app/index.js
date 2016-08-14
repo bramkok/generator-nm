@@ -108,6 +108,7 @@ module.exports = class extends yeoman.Base {
 			}
 
 			mv('editorconfig', '.editorconfig');
+			mv('eslintrc.json', '.eslintrc.json');
 			mv('gitattributes', '.gitattributes');
 			mv('gitignore', '.gitignore');
 			mv('travis.yml', '.travis.yml');

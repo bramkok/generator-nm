@@ -6,5 +6,5 @@ module.exports = (input, opts) => {
 
 	opts = opts || {};
 
-	return input + ' & ' + (opts.postfix || 'rainbows');
+	return input + ' & ' + (opts.postfix || 'vinegar');
 };

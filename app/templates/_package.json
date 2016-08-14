@@ -6,7 +6,6 @@
   "repository": "<%= githubUsername %>/<%= repoName %>",
   "author": {
     "name": "<%= name %>",
-    "email": "<%= email %>",
     "url": "<%= humanizedWebsite %>"
   },<% if (cli) { %>
   "bin": "cli.js",<% } %>
@@ -29,6 +28,9 @@
     "meow": "^3.7.0"
   <% } %>},
   "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
     "ava": "^0.15.2",<% if (coveralls) { %>
     "coveralls": "^2.11.12",<% } %><% if (nyc) { %>
     "nyc": "^7.1.0",<% } %>

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 'use strict';
+
 const meow = require('meow');
 const <%= camelModuleName %> = require('./');
 
@@ -12,9 +13,9 @@ const cli = meow(`
 
 	Examples
 	  $ <%= repoName %>
-	  unicorns & rainbows
+	  salt & vinegar
 	  $ <%= repoName %> ponies
-	  ponies & rainbows
+	  pepper & vinegar
 `);
 
-console.log(<%= camelModuleName %>(cli.input[0] || 'unicorns'));
+console.log(<%= camelModuleName %>(cli.input[0] || 'salt'));
