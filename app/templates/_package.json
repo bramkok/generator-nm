@@ -28,9 +28,11 @@
     "meow": "^3.7.0"
   <% } %>},
   "devDependencies": {
-    "eslint": "^2.4.0",
-    "eslint-config-airbnb": "^6.2.0",
-    "eslint-plugin-react": "^4.2.3",
+    "eslint": "^3.3.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.0.0",
     "ava": "^0.15.2",<% if (coveralls) { %>
     "coveralls": "^2.11.12",<% } %><% if (nyc) { %>
     "nyc": "^7.1.0",<% } %>
