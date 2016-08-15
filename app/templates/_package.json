@@ -13,6 +13,9 @@
     "node": ">=4"
   },
   "scripts": {
+    "start": "node cli.js --verbose",
+    "watch:test": "ava --watch",
+    "xo": "xo",
     "test": "xo && <% if (nyc) { %>nyc <% } %>ava"
   },
   "files": [
