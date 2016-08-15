@@ -2,23 +2,17 @@
 
 > <%= moduleDescription %>
 
-
 ## Install
 
 ```
 $ npm install --save <%= moduleName %>
 ```
 
-
 ## Usage
 
 ```js
 const <%= camelModuleName %> = require('<%= moduleName %>');
-
-<%= camelModuleName %>('salt');
-//=> 'salt & vinegar'
 ```
-
 
 ## API
 
@@ -39,29 +33,28 @@ Default: `false`
 
 Lorem ipsum.<% if (cli) { %>
 
-
 ## CLI
 
-```
+```console
 $ npm install --global <%= moduleName %>
 ```
 
-```
+```console
 $ <%= repoName %> --help
+```
 
-  Usage
-    <%= repoName %> [input]
+```console
+Usage
+  $ <%= repoName %> <options>
 
-  Options
-    --foo  Lorem ipsum [Default: false]
+Options
+  -v, --verbose    Print message to stdout
+  -h, --help       Display Help information
 
-  Examples
-    $ <%= repoName %>
-    salt & vinegar
-    $ <%= repoName %> ponies
-    pepper & vinegar
+Examples
+  $ <%= repoName %> --verbose
+  This is a message.
 ```<% } %>
-
 
 ## License
 
