@@ -45,6 +45,7 @@
     "eslint-plugin-import": "^1.13.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.0.0",
+    "execa": "^0.4.0",
     "pify": "^2.2.0",
     "xo": "*",
     "yeoman-assert": "^2.0.0",
