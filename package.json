@@ -1,6 +1,6 @@
 {
   "name": "generator-node-modules",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A node module generator for yo",
   "license": "MIT",
   "repository": "bramkok/generator-node-modules",
@@ -58,7 +58,7 @@
     "space": true,
     "rules": {
       "babel/object-curly-spacing": 0,
-      "babel/arrow-parens": 0,
+      "babel/arrow-parens": 1,
       "comma-dangle": [
         "error",
         "always-multiline"
@@ -68,7 +68,8 @@
         "multi-line"
       ],
       "no-implicit-coercion": [
-        "error", {
+        "error",
+        {
           "boolean": false,
           "number": true,
           "string": true,
@@ -79,20 +80,24 @@
       "babel/generator-star-spacing": 1,
       "babel/new-cap": 1,
       "babel/array-bracket-spacing": 1,
-      "babel/object-curly-spacing": 0,
       "babel/object-shorthand": 1,
-      "babel/arrow-parens": 1,
       "babel/no-await-in-loop": 1,
       "babel/flow-object-type": 1,
       "babel/func-params-comma-dangle": 1,
-      "import/no-extraneous-dependencies": ["error", {
-        "devDependencies": true,
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }],
-      "no-underscore-dangle": ["error", {
-        "allowAfterThis": true
-      }],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allowAfterThis": true
+        }
+      ],
       "no-console": 0
     },
     "ignores": [
