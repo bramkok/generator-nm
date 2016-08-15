@@ -1,21 +1,19 @@
 #!/usr/bin/env node
-'use strict';
 
 const meow = require('meow');
-const <%= camelModuleName %> = require('./');
 
 const cli = meow(`
 	Usage
-	  $ <%= repoName %> [input]
+	  $ <%= repoName %> <options>
 
 	Options
-	  --foo  Lorem ipsum [Default: false]
+    -v, --verbose    Print message to stdout
+  	-h, --help       Display Help information
 
 	Examples
-	  $ <%= repoName %>
-	  salt & vinegar
-	  $ <%= repoName %> ponies
-	  pepper & vinegar
-`);
+	  $ <%= repoName %> --verbose
+    This is a message.`,
 
-console.log(<%= camelModuleName %>(cli.input[0] || 'salt'));
+{ alias: { v: 'verbose', h: 'help' } }).flags.v;
+
+if (cli) process.stdout.write('This is a message.');
