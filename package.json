@@ -12,7 +12,9 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "watch": "ava --verbose --watch",
+    "xo": "xo && ava"
   },
   "files": [
     "app"
