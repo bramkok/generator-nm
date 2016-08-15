@@ -1,6 +1,6 @@
 {
   "name": "generator-node-modules",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A node module generator for yo",
   "license": "MIT",
   "repository": "bramkok/generator-node-modules",
