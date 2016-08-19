@@ -19,6 +19,7 @@ test.serial('generates expected files', async() => {
     moduleName: 'test',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: false,
   });
 
@@ -36,9 +37,39 @@ test.serial('generates expected files', async() => {
     'package.json',
     'readme.md',
     'test.js',
+    '.git',
   ]);
 
-  assert.noFile('cli.js');
+  assert.noFile([
+    'cli.js',
+    '.babelrc',
+  ]);
+
+  assert.noFileContent('package.json', /cli\.js/);
+});
+
+test.serial('Transpilation option', async() => {
+  helpers.mockPrompt(generator, {
+    moduleName: 'test',
+    githubUsername: 'test',
+    website: 'test.com',
+    transpilation: true,
+    cli: true,
+  });
+
+  await pify(generator.run.bind(generator))();
+
+  assert.file([
+    'src/',
+    'lib/',
+    'src/cli.js',
+    'src/index.js',
+    '.babelrc',
+  ]);
+
+  assert.fileContent('package.json', /"bin": "lib\/cli.js"/);
+  assert.fileContent('package.json', /"transpile": "babel src --out-dir lib"/);
+  assert.fileContent('package.json', /"start": "node lib\/cli.js/);
 });
 
 test.serial('CLI option', async() => {
@@ -46,6 +77,7 @@ test.serial('CLI option', async() => {
     moduleName: 'test',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: true,
   });
 
@@ -55,6 +87,12 @@ test.serial('CLI option', async() => {
   assert.fileContent('package.json', /"bin":/);
   assert.fileContent('package.json', /"bin": "cli.js"/);
   assert.fileContent('package.json', /"meow"/);
+
+  assert.noFile([
+    'src/',
+    'lib/',
+    '.babelrc',
+  ]);
 });
 
 test.serial('nyc option', async() => {
@@ -62,6 +100,7 @@ test.serial('nyc option', async() => {
     moduleName: 'test',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: false,
     nyc: true,
     coveralls: false,
@@ -69,10 +108,15 @@ test.serial('nyc option', async() => {
 
   await pify(generator.run.bind(generator))();
 
-  assert.noFile('cli.js');
+  assert.noFile([
+    'src/',
+    'lib/',
+    'cli.js',
+    '.babelrc',
+  ]);
   assert.fileContent('.gitignore', /\.nyc_output/);
   assert.fileContent('.gitignore', /coverage/);
-  assert.fileContent('package.json', /"xo && nyc ava"/);
+  assert.fileContent('package.json', /"xo && nyc ava --verbose"/);
   assert.fileContent('package.json', /"nyc": "/);
   assert.noFileContent('package.json', /"coveralls":/);
   assert.noFileContent('package.json', /"lcov"/);
@@ -84,6 +128,7 @@ test.serial('coveralls option', async() => {
     moduleName: 'test',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: false,
     nyc: true,
     coveralls: true,
@@ -91,10 +136,15 @@ test.serial('coveralls option', async() => {
 
   await pify(generator.run.bind(generator))();
 
-  assert.noFile('cli.js');
+  assert.noFile([
+    'src/',
+    'lib/',
+    'cli.js',
+    '.babelrc',
+  ]);
   assert.fileContent('.gitignore', /\.nyc_output/);
   assert.fileContent('.gitignore', /coverage/);
-  assert.fileContent('package.json', /"xo && nyc ava"/);
+  assert.fileContent('package.json', /"xo && nyc ava --verbose"/);
   assert.fileContent('package.json', /"nyc": "/);
   assert.fileContent('package.json', /"coveralls":/);
   assert.fileContent('package.json', /"lcov"/);
@@ -114,6 +164,7 @@ test.serial('prompts for description', async() => {
     moduleDescription: 'foo',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: false,
     nyc: true,
     coveralls: true,
@@ -130,6 +181,7 @@ test.serial('defaults to superb description', async() => {
     moduleName: 'test',
     githubUsername: 'test',
     website: 'test.com',
+    transpilation: false,
     cli: false,
     nyc: true,
     coveralls: true,

@@ -58,7 +58,7 @@
     "space": true,
     "rules": {
       "babel/object-curly-spacing": 0,
-      "babel/arrow-parens": 1,
+      "babel/arrow-parens": 0,
       "comma-dangle": [
         "error",
         "always-multiline"

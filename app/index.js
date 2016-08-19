@@ -1,4 +1,5 @@
 'use strict';
+const fs = require('fs');
 const superb = require('superb');
 const normalizeUrl = require('normalize-url');
 const humanizeUrl = require('humanize-url');
@@ -13,6 +14,11 @@ module.exports = class extends yeoman.Base {
     this.option('org', {
       type: 'string',
       desc: 'Publish to a GitHub organization account',
+    });
+
+    this.option('transpilation', {
+      type: 'boolean',
+      desc: 'Add Babel for code transpilation',
     });
 
     this.option('cli', {
@@ -53,6 +59,12 @@ module.exports = class extends yeoman.Base {
       validate: (x) => (x.length > 0 ? true : 'You have to provide a website URL'),
       filter: (x) => normalizeUrl(x),
     }, {
+      name: 'transpilation',
+      message: 'Configure Babel for code transpilation?',
+      type: 'confirm',
+      default: Boolean(this.options.cli),
+      when: () => this.options.transpilation === undefined,
+    }, {
       name: 'cli',
       message: 'Do you need a CLI?',
       type: 'confirm',
@@ -75,6 +87,7 @@ module.exports = class extends yeoman.Base {
         props[prop || option] : this.options[option]
       );
 
+      const transpilation = or('transpilation');
       const cli = or('cli');
       const coveralls = or('coveralls');
       const nyc = coveralls || or('coverage', 'nyc');
@@ -91,6 +104,7 @@ module.exports = class extends yeoman.Base {
         email: this.user.git.email(),
         website: props.website,
         humanizedWebsite: humanizeUrl(props.website),
+        transpilation,
         cli,
         nyc,
         coveralls,
@@ -103,10 +117,32 @@ module.exports = class extends yeoman.Base {
       this.fs.copyTpl([
         `${this.templatePath()}/**`,
         '!**/cli.js',
+        '!**/index.js',
+        '!**/babelrc',
       ], this.destinationPath(), tpl);
 
-      if (props.cli) {
-        this.fs.copyTpl(this.templatePath('cli.js'), this.destinationPath('cli.js'), tpl);
+      if (props.transpilation) {
+        fs.mkdir(`${this.destinationPath()}/lib`);
+        fs.mkdir(`${this.destinationPath()}/src`);
+
+        this.fs.copyTpl(this.templatePath('babelrc'),
+          this.destinationPath('.babelrc'), tpl);
+
+        this.fs.copyTpl(this.templatePath('index.js'),
+          `${this.destinationPath()}/src/index.js`, tpl);
+
+        if (props.cli) {
+          this.fs.copyTpl(this.templatePath('cli.js'),
+            `${this.destinationPath()}/src/cli.js`, tpl);
+        }
+      } else {
+        this.fs.copyTpl(this.templatePath('index.js'),
+          this.destinationPath('index.js'), tpl);
+
+        if (props.cli) {
+          this.fs.copyTpl(this.templatePath('cli.js'),
+            this.destinationPath('cli.js'), tpl);
+        }
       }
 
       mv('editorconfig', '.editorconfig');
